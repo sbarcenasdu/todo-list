@@ -1,0 +1,89 @@
+---
+import ToDoListLogo from "../ui/ToDoListLogo.astro";
+---
+
+<header class="bg-[#c8d8ff] dark:bg-[#171e52]">
+  <div class="flex items-center px-2 md:px-4">
+    <div class="flex items-center space-x-4">
+        <a href="/" class="p-2">
+            <ToDoListLogo
+            className="size-14"
+            colorDarkPrimary="fill-primary"
+            colorDarkSecondary="fill-secondary"
+            />
+        </a>
+        <h1 class="text-4xl"> ToDo List</h1>
+    </div>
+    <nav class="borders border-blacks ml-auto">
+      <ul class="flex space-x-3 md:space-x-10">
+        <li>
+          <a href="/">Inicio</a>
+        </li>
+        <li>
+          <a href="/">Buscar</a>
+        </li>
+        <li>
+          <a href="/">Tareas</a>
+        </li>
+        <!-- <li>
+          <a href="/about">Nosotrosxxx</a>
+        </li>
+        <li>
+          <a href="/contact">Contactoxxx</a>
+        </li> -->
+        <li>
+          <a href="#" id="toggle-mode" aria-label="Cambiar modo">
+            <img
+              id="mode-icon"
+              src="/icons/sun.svg"
+              alt="Modo"
+              width="25rem"
+            />
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<script>
+  // Función para aplicar el modo oscuro o claro según la preferencia almacenada
+  function applyTheme() {
+    const darkMode = localStorage.getItem("dark-mode") === "true";
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }
+
+  // Función para alternar entre modo oscuro y claro
+  function toggleTheme() {
+    const isDarkMode = document.documentElement.classList.toggle("dark");
+    localStorage.setItem("dark-mode", isDarkMode.toString());
+    updateIcon(isDarkMode);
+  }
+
+  // Función para actualizar el ícono según el modo
+  function updateIcon(isDarkMode: boolean) {
+    const modeIcon = document.getElementById("mode-icon") as HTMLImageElement;
+    if (modeIcon) {
+      modeIcon.src = isDarkMode ? "/icons/sun.svg" : "/icons/moon.svg";
+    } else {
+      console.error("Icon element not found.");
+    }
+  }
+
+  // Aplicar el tema al cargar la página
+  document.addEventListener("DOMContentLoaded", () => {
+    applyTheme();
+    updateIcon(document.documentElement.classList.contains("dark"));
+
+    // Configurar el botón de cambio de modo
+    const toggleButton = document.getElementById("toggle-mode");
+    if (toggleButton) {
+      toggleButton.addEventListener("click", toggleTheme);
+    } else {
+      console.error("El botón de cambio de modo no se encontró en el DOM.");
+    }
+  });
+</script>

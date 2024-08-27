@@ -1,54 +1,66 @@
-# Astro Starter Kit: Basics
+# ToDo List - Frontend
 
-```sh
-npm create astro@latest -- --template basics
-```
+## Descripción
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+Este proyecto es la interfaz de usuario para una aplicación ToDo List, construida con Astro.js, Tailwind CSS y Alpine.js. Permite a los usuarios visualizar, agregar, editar y eliminar tareas.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Estructura del Proyecto
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+- **`src/pages/index.astro`**: Página principal que muestra la lista de tareas.
+- **`src/components/TasksList.astro`**: Componente para mostrar la lista de tareas.
+- **`src/ui/ToDoListLogo.astro`**: Componente para el logo de la lista de tareas.
+- **`src/layouts/Layout.astro`**: Layout principal para la aplicación.
+- **`src/styles/base.css`**: Archivo de estilos base.
+- **`src/styles/shared.css`**: Archivo de estilos compartidos.
+- **`app.js`**: Archivo JavaScript que maneja la lógica del CRUD y la comunicación con la API.
+- **`tailwind.config.js`** y **`tailwind.config.mjs`**: Archivos de configuración de Tailwind CSS.
 
-## 🚀 Project Structure
+## Instalación
 
-Inside of your Astro project, you'll see the following folders and files:
+1. **Clonar el Repositorio**
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+   ```bash
+   git clone <https://github.com/sbarcenasdu/todo-list.git>
+   cd <todo-list>
+   ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+2. **Instalar Dependencias**
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+   Asegúrate de tener [Node.js](https://nodejs.org/) y [pnpm](https://pnpm.io/) instalados. Luego, ejecuta:
 
-Any static assets, like images, can be placed in the `public/` directory.
+   ```bash
+   pnpm install
+   ```
 
-## 🧞 Commands
+3. **Configurar Tailwind CSS**
 
-All commands are run from the root of the project, from a terminal:
+   Si aún no lo has hecho, ejecuta el siguiente comando para generar el archivo de configuración de Tailwind:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+   ```bash
+   npx tailwindcss init
+   ```
 
-## 👀 Want to learn more?
+4. **Ejecutar el Proyecto**
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+   Para iniciar el servidor de desarrollo, ejecuta:
+
+   ```bash
+   pnpm dev
+   ```
+
+   La aplicación estará disponible en `http://localhost:3000`.
+
+## Uso
+
+- **Página Principal**: Muestra la lista de tareas.
+- **Agregar Tarea**: Haz clic en el botón de agregar tarea para abrir el modal y añadir una nueva tarea.
+- **Editar Tarea**: Haz clic en el botón de editar en una tarea para modificarla.
+- **Eliminar Tarea**: Haz clic en el botón de eliminar para borrar una tarea.
+
+## Documentación
+
+Para más detalles sobre Astro.js, Tailwind CSS y Alpine.js, consulta la documentación oficial:
+
+- [Astro.js](https://docs.astro.build/)
+- [Tailwind CSS](https://tailwindcss.com/docs)
+- [Alpine.js](https://alpinejs.dev/start-here)

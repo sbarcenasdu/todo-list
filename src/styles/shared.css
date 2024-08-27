@@ -1,0 +1,31 @@
+/* colores logo */
+
+:root {
+  --color-light-primary: #004992;
+  --color-light-secondary: #4c85da;
+}
+
+.dark {
+  --color-dark-primary: #4c85da;
+  --color-dark-secondary: #0157ad;
+}
+
+.fill-primary {
+  fill: var(--color-light-primary);
+}
+
+.dark .fill-primary {
+  fill: var(--color-dark-primary);
+}
+
+.fill-secondary {
+  fill: var(--color-light-secondary);
+}
+
+.dark .fill-secondary {
+  fill: var(--color-dark-secondary);
+}
+
+section {
+  padding: 5rem 0;
+}

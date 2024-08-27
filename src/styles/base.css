@@ -1,0 +1,22 @@
+:root {
+  background-color: #070c1c;
+  color: #E0E0E0;
+}
+
+html {
+  font-family: "Mulish Variable", system-ui, sans-serif;
+}
+
+p {
+  font-family: "Mulish Variable";
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Montserrat Variable";
+}
+
