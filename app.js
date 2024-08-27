@@ -8,7 +8,12 @@ document.addEventListener("alpine:init", () => {
     currentTask: { id: null, title: "", description: "", completed: false },
     modalOpen: false,
     modalMode: "add", // 'add' o 'edit'
+    deleteModalOpen: false,
+    taskToDelete: null,
     searchTerm: '',
+    toastMessage: '',
+    toastType: '',
+    showToast: false,
 
     async fetchTasks() {
       try {
@@ -45,14 +50,34 @@ document.addEventListener("alpine:init", () => {
             completed: false,
           };
           this.fetchTasks();
+          this.showToast = true;
+          this.toastMessage = 'Tarea guardada exitosamente.';
+          this.toastType = 'success';
+          setTimeout(() => {
+            this.showToast = false;
+          }, 3000);
         } else {
           console.error("Error saving task:", await response.text());
+          this.modalOpen = false;
+          this.showToast = true;
+          this.toastMessage = 'Error al guardar la tarea.';
+          this.toastType = 'danger';
+          setTimeout(() => {
+            this.showToast = false;
+          }, 3000);
         }
       } catch (error) {
         console.error("Error saving task:", error);
+        this.modalOpen = false;
+        this.showToast = true;
+        this.toastMessage = 'Error al guardar la tarea.';
+        this.toastType = 'danger';
+        setTimeout(() => {
+          this.showToast = false;
+        }, 3000);
       }
     },
-
+//******************* */
     openModal(
       mode,
       task = { id: null, title: "", description: "", completed: false }
@@ -62,14 +87,35 @@ document.addEventListener("alpine:init", () => {
       this.modalOpen = true;
     },
 
-    async deleteTask(id) {
+    openDeleteModal(id) {
+      this.taskToDelete = id;
+      this.deleteModalOpen = true;
+    },
+
+    async confirmDeletion() {
+      if (this.taskToDelete === null) return;
+
       try {
-        await fetch(`http://localhost:3000/tasks/${id}`, {
+        await fetch(`http://localhost:3000/tasks/${this.taskToDelete}`, {
           method: "DELETE",
         });
         this.fetchTasks();
+        this.deleteModalOpen = false;
+        this.showToast = true;
+        this.toastMessage = 'Tarea eliminada exitosamente.';
+        this.toastType = 'success';
+        setTimeout(() => {
+          this.showToast = false;
+        }, 3000);
       } catch (error) {
         console.error("Error deleting task:", error);
+        this.deleteModalOpen = false;
+        this.showToast = true;
+        this.toastMessage = 'Error al eliminar la tarea.';
+        this.toastType = 'danger';
+        setTimeout(() => {
+          this.showToast = false;
+        }, 3000);
       }
     },
 
@@ -84,7 +130,6 @@ document.addEventListener("alpine:init", () => {
         );
       });
     },
-
   }));
 });
 
