@@ -14,6 +14,7 @@ document.addEventListener("alpine:init", () => {
     toastMessage: '',
     toastType: '',
     showToast: false,
+    modalTitle: 'Añadir tarea',
 
     async fetchTasks() {
       try {
@@ -83,6 +84,7 @@ document.addEventListener("alpine:init", () => {
       task = { id: null, title: "", description: "", completed: false }
     ) {
       this.modalMode = mode;
+      this.modalTitle = mode === 'add' ? 'Añadir tarea' : 'Editar tarea';
       this.currentTask = { ...task };
       this.modalOpen = true;
     },
